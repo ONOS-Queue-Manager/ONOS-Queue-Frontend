@@ -1,20 +1,23 @@
 import './styles/App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Route, Routes, HashRouter as Router } from "react-router-dom";
-
+import { Route, Routes, HashRouter as Router } from 'react-router-dom';
+import NavbarComp from './components/common/NavbarComp';
+import Footer from './components/common/Footer';
+import QueueManage from './pages/QueueManage';
 
 function App() {
   return (
-    <div className="App">
-      <Router>
-        <Routes>
-          <Route path="/" element={<h1>Home</h1>} />
-          <Route path="/about" element={<h1>About</h1>} />
-        </Routes>
-      </Router>
+    <Router>
+      <div className='App'>
+        <NavbarComp />
 
-      
-    </div>
+        <Routes>
+        <Route path="/" element={<QueueManage/>} />
+        <Route path='/about' element={<h1>About</h1>} />
+        </Routes>
+        <Footer />
+      </div>
+    </Router>
   );
 }
 
