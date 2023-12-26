@@ -4,6 +4,7 @@ import { Route, Routes, HashRouter as Router } from 'react-router-dom';
 import NavbarComp from './components/common/NavbarComp';
 import Footer from './components/common/Footer';
 import QueueManage from './pages/QueueManage';
+import InsertQueue from './pages/InsertQueue';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
 
         <Routes>
         <Route path="/" element={<QueueManage/>} />
+        <Route path='/queueManage' element={<InsertQueue />} />
         <Route path='/about' element={<h1>About</h1>} />
         </Routes>
         <Footer />

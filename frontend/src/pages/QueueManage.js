@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
-import "../styles/queueManage.css";
+import { useNavigate } from 'react-router-dom'; // Import useHistory from React Router
+import Button from '@mui/material/Button';
+// import "../styles/queueManage.css";
 
 const columns = [
   { field: 'id', headerName: 'ID', width: 70 },
@@ -35,20 +37,37 @@ const rows = [
   { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
 ];
 
-export default function QueueManage() {
+const QueueManage = () => {
+  const navigate = useNavigate(); // Create a navigate object
+
+  const handleInsertClick = () => {
+    // Navigate to the new page (replace '/new-page' with your desired route)
+    navigate('/insertQueue')
+  };
+
   return (
-    <div style={{ height: 400, width: '80%', marginTop:'10%', marginBottom:"10%", alignItems:"center", justifyContent:"center",display:"flex",marginLeft:"10%" }}>
-      <DataGrid
-        rows={rows}
-        columns={columns}
-        initialState={{
-          pagination: {
-            paginationModel: { page: 0, pageSize: 5 },
-          },
-        }}
-        pageSizeOptions={[5, 10]}
-        checkboxSelection
-      />
+    <div>
+      <h2 style={{ textAlign: 'center',marginTop: "5%" }}>Flow Table</h2>
+
+      <Button variant="contained" color="primary" style={{ marginBottom: '1%', alignItems: 'center', justifyContent: 'center', display: 'flex', marginLeft: '10%' }} onClick={handleInsertClick}>
+        Insert
+      </Button>
+
+      <div style={{ height: 400, width: '80%', margin: '2% auto', alignItems: 'center', justifyContent: 'center', display: 'flex', marginLeft: '10%' }}>
+        <DataGrid
+          rows={rows}
+          columns={columns}
+          initialState={{
+            pagination: {
+              paginationModel: { page: 0, pageSize: 5 },
+            },
+          }}
+          pageSizeOptions={[5, 10]}
+          checkboxSelection
+        />
+      </div>
     </div>
   );
-}
+};
+
+export default QueueManage;
