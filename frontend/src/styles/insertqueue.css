@@ -1,0 +1,80 @@
+.register__customer__container {
+    box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+    margin-top: 8%;
+    border-radius: 10px;
+    margin-bottom: 3%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .register__customer__topic{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .register__customer__form {
+    padding: 10% 5% 5% 5%;
+  }
+  .register__customer__heading{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
+  }
+  
+  .register__customer__griditem {
+    margin-bottom: 2px;
+  }
+
+  .input-text{
+    border-radius: 15px;
+    border: none;
+    color: var(--heading-color);
+    margin-top: 5px;
+  }
+  
+  .register__customer__img {
+    size: 50%;
+    margin-top: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .register__customer__submitbtn {
+    display: flex;
+    justify-content: center;
+  }
+
+  .social__icons__topic{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 5%;
+  }
+
+
+ 
+
+  .already__have__an__account{
+    color: #333;
+    margin-top: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.already__have__an__account a{
+  text-decoration: none;
+  color: #333;
+  display: flex;
+  font-weight: 600;
+  justify-content: center;
+  align-items: center;
+}
+
+  

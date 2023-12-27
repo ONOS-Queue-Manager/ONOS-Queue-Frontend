@@ -1,0 +1,33 @@
+.about-container{
+    box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+    margin-top: 8%;
+    border-radius: 10px;
+    margin-bottom: 3%;
+    width: 100%;
+    height: 450px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.text-box{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 2%;
+
+}
+
+.about-container ul {
+    list-style-type: none;
+    justify-content: space-between;
+    margin-top: 2%;
+  }
+
+  .about-container ul li{
+    margin-top: 2%;
+    justify-content: left ;
+    
+
+  }

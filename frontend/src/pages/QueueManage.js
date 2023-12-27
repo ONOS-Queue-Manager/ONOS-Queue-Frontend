@@ -2,6 +2,18 @@ import * as React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
+import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
+import '../styles/queueManage.css'; // Import custom CSS
+
+const handleEditClick = (id) => {
+  // Handle edit logic here
+  console.log(`Edit button clicked for ID: ${id}`);
+};
+
+const handleDeleteClick = (id) => {
+  // Handle delete logic here
+  console.log(`Delete button clicked for ID: ${id}`);
+};
 
 const columns = [
   { field: 'id', headerName: 'ID', width: 130 },
@@ -10,8 +22,23 @@ const columns = [
   { field: 'device', headerName: 'Device', width: 120 },
   { field: 'device_name', headerName: 'Device Type', width: 150 },
   { field: 'operational', headerName: 'Operational', width: 120 },
-  { field: 'action', headerName: 'Action', width: 120 },
+  { 
+    field: 'action', 
+    headerName: 'Action', 
+    width: 220, 
+    renderCell: (params) => (
+      <div>
+        <button type="button" className="btn btn-primary btn-sm btn-action" onClick={() => handleEditClick(params.row.id)}>
+          Edit
+        </button>
+        <button type="button" className="btn btn-danger btn-sm" onClick={() => handleDeleteClick(params.row.id)}>
+          Delete
+        </button>
+      </div>
+    ),
+  },
 ];
+
 
 const rows = [
   { id: 2, flow_name: 'Lannister', table_id: 'Cersei', device: 42, device_name: 'Type B', operational: 'No', action: 'Delete' },
@@ -20,7 +47,6 @@ const rows = [
   { id: 5, flow_name: 'Melisandre', table_id: null, device: 150, device_name: 'Type E', operational: 'Yes', action: 'Edit' },
   { id: 6, flow_name: 'Clifford', table_id: 'Ferrara', device: 44, device_name: 'Type F', operational: 'No', action: 'Delete' },
   { id: 7, flow_name: 'Frances', table_id: 'Rossini', device: 36, device_name: 'Type G', operational: 'Yes', action: 'Edit' },
-  // Add more rows as needed
 ];
 
 const QueueManage = () => {
