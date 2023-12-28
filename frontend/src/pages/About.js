@@ -1,6 +1,6 @@
 // Import necessary libraries and components
 import React from "react";
-import { Container, Row, Col, Card } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import team from "../components/images/team.jpg";
 import '../styles/about.css'
