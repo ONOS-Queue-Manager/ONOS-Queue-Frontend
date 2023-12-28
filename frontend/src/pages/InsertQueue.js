@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import '../styles/insertqueue.css';
 import swal from 'sweetalert';
+import { v4 as uuidv4 } from 'uuid';
 import {
   Container,
   Row,
@@ -17,12 +18,13 @@ import {
 
 const InsertQueue = () => {
   const [validated, setValidated] = useState(false);
-  const [fName, setFname] = useState('');
-  const [id, setID] = useState('');
-  const [tableID, setTableID] = useState('');
-  const [device, setDevice] = useState('');
-  const [deviceType, setDeviceType] = useState('');
-  const [operational, setOperational] = useState('');
+  const [id, setID] = useState(uuidv4());
+  const [queueId, setqueueId] = useState('');
+  const [maxRate, setmaxRate] = useState();
+  const [minRate, setminRate] = useState();
+  const [burst, setburst] = useState();
+  const [priority, setpriority] = useState();
+
 
   const navigate = useNavigate();
 
@@ -38,35 +40,36 @@ const InsertQueue = () => {
       setValidated(false);
 
       e.preventDefault();
+      
 
       axios
         .post('https://car-care-360.onrender.com/api/authentication/register', {
-          fName,
           id,
-          tableID,
-          device,
-          deviceType,
-          operational,
+          queueId,
+          maxRate,
+          minRate,
+          burst,
+          priority,
          
         })
         .then(() => {
           swal('Send Request!', '', 'success'); // Show success message
-          setFname('');
-          setID('');
-          setTableID('');
-          setDevice('');
-          setDeviceType('');
-          setOperational('');
+          setID(uuidv4());
+          setqueueId('');
+          setmaxRate('');
+          setminRate('');
+          setburst('');
+          setpriority('');
           navigate('/queueManage');
         })
         .catch((error) => {
           swal('Request Faild!', '', 'error'); // Show success message
-          setFname('');
-          setID('');
-          setTableID('');
-          setDevice('');
-          setDeviceType('');
-          setOperational('');
+          setID(uuidv4());
+          setqueueId('');
+          setmaxRate('');
+          setminRate('');
+          setburst('');
+          setpriority('');
         });
     }
   };
@@ -93,19 +96,19 @@ const InsertQueue = () => {
                 <Row className=' pb-2'>
                   <Form.Group as={Col} controlId='text' item xs={12} md={6}>
                     <Form.Label className='d-flex justify-content-start'>
-                      Flow Name
+                      Queue ID
                     </Form.Label>
 
                     <Form.Control
                       type='text'
-                      placeholder='Enter Flow Name'
+                      placeholder='Enter Queue ID'
                       maxLength={25}
                       required
-                      value={fName}
-                      onChange={(e) => setFname(e.target.value)}
+                      value={queueId}
+                      onChange={(e) => setqueueId(e.target.value)}
                     />
                     <Form.Control.Feedback type='invalid'>
-                      *Please enter flow name
+                      *Please enter valid queue id
                     </Form.Control.Feedback>
                   </Form.Group>
                   <Form.Group
@@ -116,18 +119,18 @@ const InsertQueue = () => {
                     md={6}
                   >
                     <Form.Label className='d-flex justify-content-start'>
-                      ID
+                      Max Rate
                     </Form.Label>
                     <Form.Control
-                      type='text'
-                      placeholder='Enter ID'
+                      type='number'
+                      placeholder='Enter Max Rate'
                       maxLength={25}
                       required
-                      value={id}
-                      onChange={(e) => setID(e.target.value)}
+                      value={maxRate}
+                      onChange={(e) => setmaxRate(e.target.value)}
                     />
                     <Form.Control.Feedback type='invalid'>
-                      *Please enter your correct id
+                      *Please enter your correct max rate
                     </Form.Control.Feedback>
                   </Form.Group>
                 </Row>
@@ -140,19 +143,19 @@ const InsertQueue = () => {
                     md={6}
                   >
                     <Form.Label className='d-flex justify-content-start'>
-                      Table ID
+                      Min Rate
                     </Form.Label>
 
                     <Form.Control
-                      type='text'
-                      placeholder='Enter Table ID'
+                      type='number'
+                      placeholder='Enter Min Rate'
                       maxLength={20}
                       required
-                      value={tableID}
-                      onChange={(e) => setTableID(e.target.value)}
+                      value={minRate}
+                      onChange={(e) => setminRate(e.target.value)}
                     />
                     <Form.Control.Feedback type='invalid'>
-                      *Please enter valiad table id
+                      *Please enter valiad min rate
                     </Form.Control.Feedback>
                   </Form.Group>
                   <Form.Group
@@ -163,19 +166,19 @@ const InsertQueue = () => {
                     md={6}
                   >
                     <Form.Label className='d-flex justify-content-start'>
-                      Device
+                      Burst
                     </Form.Label>
 
                     <Form.Control
-                      type='text'
-                      placeholder='Enter Device'
+                      type='number'
+                      placeholder='Enter Burst'
                       maxLength={20}
                       required
-                      value={device}
-                      onChange={(e) => setDevice(e.target.value)}
+                      value={burst}
+                      onChange={(e) => setburst(e.target.value)}
                     />
                     <Form.Control.Feedback type='invalid'>
-                      *Please enter device
+                      *Please enter burst
                     </Form.Control.Feedback>
                   </Form.Group>
 
@@ -190,48 +193,22 @@ const InsertQueue = () => {
                     md={6}
                   >
                     <Form.Label className='d-flex justify-content-start'>
-                      Device Type
+                    Priority
                     </Form.Label>
 
                     <Form.Control
-                      type='text'
-                      placeholder='Enter Device Type'
+                      type='number'
+                      placeholder='Enter Priority'
                       maxLength={20}
                       required
-                      value={deviceType}
-                      onChange={(e) => setDeviceType(e.target.value)}
+                      value={priority}
+                      onChange={(e) => setpriority(e.target.value)}
                     />
                     <Form.Control.Feedback type='invalid'>
-                      *Please enter device
+                      *Please enter priority
                     </Form.Control.Feedback>
                   </Form.Group>
                   
-                </Row>
-
-                <Row className=' pb-2'>
-                <Form.Group
-                    as={Col}
-                    controlId='formGridAddress'
-                    item
-                    xs={12}
-                    md={6}
-                  >
-                    <Form.Label className='d-flex justify-content-start'>
-                      Operational
-                    </Form.Label>
-
-                    <Form.Control
-                      type='text'
-                      placeholder='Enter Operational Property '
-                      maxLength={20}
-                      required
-                      value={operational}
-                      onChange={(e) => setOperational(e.target.value)}
-                    />
-                    <Form.Control.Feedback type='invalid'>
-                      *Please enter device
-                    </Form.Control.Feedback>
-                  </Form.Group>
                 </Row>
 
                 <div class='container d-flex justify-content-center'>
